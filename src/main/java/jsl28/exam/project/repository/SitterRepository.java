@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by Jakob on 19-05-2018.
  */
 public interface SitterRepository extends CrudRepository<Sitter, Integer> {
+    Sitter findByName(String name);
 }

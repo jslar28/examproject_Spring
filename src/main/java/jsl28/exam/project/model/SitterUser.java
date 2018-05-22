@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jakob on 21-05-2018.
@@ -18,6 +20,7 @@ public class SitterUser {
     private String password;
     @OneToOne
     private Sitter sitter;
+    private ArrayList<String> inbox = new ArrayList<>();
 
     public SitterUser(String username, String password, Sitter sitter) {
         this.username = username;

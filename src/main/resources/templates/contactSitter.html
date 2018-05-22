@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Sitter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="/main.css">
+
+</head>
+<body class="backdrop" style="text-align: center">
+<h1>WIP</h1>
+<div class="sitterInfoBox">
+    <p th:text="${sitter.getName()}"></p>
+    <p th:text="${sitter.getAge()}"></p>
+    <p th:text="${sitter.getEmail()}"></p>
+    <p th:text="${sitter.getZipCodes()}"></p>
+    <p th:text="${sitter.getTelephone()}"></p>
+    <p th:text="${sitter.getYearsOfExperience()}"></p>
+</div>
+
+
+<input placeholder="Chat..." style="width: 25em; height: 25em" type="text"/>
+
+
+</body>
+</html>

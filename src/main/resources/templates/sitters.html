@@ -19,7 +19,11 @@
                     <p th:text="'Email: ' + ${sitter.getEmail()}">EMAIL</p>
                     <p th:text="'Phone: ' + ${sitter.getTelephone()}">TLF</p>
                     <p th:text="'Zip Code(s): ' + ${sitter.getZipCodes()}">ZIPCODES</p>
-                    <button>Contact</button>
+                    <!--<form method="post" action="/contact">
+                        <button th:href="">Contact</button>
+                    </form>-->
+                    <p></p>
+                    <a th:href="@{'/contact/' + ${sitter.getName()}}">Contact</a>
                 </div>
             </div>
         </div>
