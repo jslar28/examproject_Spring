@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="main.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sitters</title>
+    </head>
+    <body class="backdrop">
+        <div class="spacer"></div>
+
+        <div class="sitterSplitFrame">
+            <div class="sitterColumn" th:each="sitter : ${sitters}">
+                <div class="sitterInfoBox">
+                    <p th:text="'(ID: ' + ${sitter.getId()}+ ')'">ID</p>
+                    <p th:text="'Name: ' + ${sitter.getName()}">NAME</p>
+                    <p th:text="'Age: ' + ${sitter.getAge()}">AGE</p>
+                    <p th:text="'Email: ' + ${sitter.getEmail()}">EMAIL</p>
+                    <p th:text="'Phone: ' + ${sitter.getTelephone()}">TLF</p>
+                    <p th:text="'Zip Code(s): ' + ${sitter.getZipCodes()}">ZIPCODES</p>
+                    <button>Contact</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

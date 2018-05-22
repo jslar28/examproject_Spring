@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<head>
+    <link rel="stylesheet" type="text/css" href="examproject_data/src/main/resources/static/main.css"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="backdrop">
+<div>
+    <p>Welcome, <span th:text="${session.username}"></span>!</p>
+    <p>Sitter</p>
+    <p th:text="${session.sitterId}"></p>
+    <p th:text="${session.sitterName}"></p>
+    <p th:text="${session.sitterZipCodes}"></p>
+</div>
+
+<p style="color: white">Made by Jakob Støttrup Larsen</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello! Please register.</h1>
+<form method="post" action="/registerSitter">
+    <span th:text="${error}" th:object="${sitter}"></span>
+    <p>General information:</p><
+    <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Age" name="age">
+    <input type="text" placeholder="ZipCode" name="zipCodes">
+    <input type="text" placeholder="Email" name="email">
+    <input type="text" placeholder="Telephone" name="telephone">
+    <input type="text" placeholder="Years of experience" name="yearsOfExperience">
+    <button type="submit">Submit Sitter</button>
+</form>
+</body>
+</html>

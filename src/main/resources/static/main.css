@@ -1,0 +1,92 @@
+body, h1, h2, h3, h4, h5 {
+    font-family: "Poppins", sans-serif
+}
+body {
+    font-size:16px;
+    margin: auto;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+/*  GENERAL   */
+
+.spacer {
+    height: 15em;
+}
+
+.backdrop {
+    background: url("/images/findASitterBackgroundClean.jpg") no-repeat center #979D9D;
+    /* Image source: zelsdiary.com */
+    background-size: contain;
+    height: 100%;
+}
+
+/* ---------- */
+
+/* FRONT PAGE */
+
+.searchBar {
+    width: 100%;
+    padding-top: 10em;
+    padding-bottom: 7em;
+    text-align: center;
+}
+
+.actionButtons {
+    padding: 1em 1em 1em 1em;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.bannerMessage {
+    text-align: center;
+    padding: 10em 1em 1em 1em;
+    color: white;
+}
+
+.middleBox {
+    height: 100%;
+}
+
+/* ---------- */
+
+/*  SITTERS   */
+
+.sitterSplitFrame {
+    margin: auto;
+    background: blue;
+}
+
+.sitterInfoBox {
+    width: 25em;
+    padding-left: 3em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin: 1em auto 1em;
+    background-color: #7adeda;
+}
+
+.sitterColumn {
+    background-color: rgba(138, 43, 226, 0);
+    width: 100%;
+    display: inline-block;
+    float: left;
+    white-space: nowrap;
+}
+
+.sitterRatingBox {
+    display: inline;
+    width: 10%;
+
+}
+
+/* ---------- */
+
+
+
+
+

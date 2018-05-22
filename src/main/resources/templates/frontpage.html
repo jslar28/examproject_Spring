@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="backdrop">
+    <div class="middleBox">
+
+        <div class="searchBar">
+            <p class="bannerMessage">Find the best sitters in your area!</p>
+            <form method="get" action="/search">
+                <input placeholder="Search" style="width: 25em" type="text" name="zipCode">
+                <button type="submit" class="jsl-center-button">Find a sitter!</button>
+            </form>
+        </div>
+
+        <div class="actionButtons">
+            <form action="/login" style="display: inline">
+                <button style="display: inline; vertical-align: center">Login</button>
+            </form>
+            <form action="/register" style="display: inline">
+                <button style="display: inline; vertical-align: center">Become a sitter</button>
+            </form>
+        </div>
+    </div>
+
+    <p style="color: white">Made by Jakob Støttrup Larsen</p>
+</body>
+</html>
