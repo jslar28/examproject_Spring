@@ -22,6 +22,7 @@ public class Sitter {
     private String telephone;
     private ArrayList<Integer> ratings = new ArrayList<>();
     private int yearsOfExperience;
+    private ArrayList<String> inbox = new ArrayList<>();
     //private User user;
 
     public Sitter(String name, int age) {
@@ -106,7 +107,16 @@ public class Sitter {
     public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
-/*
+
+    public ArrayList<String> getInbox() {
+        return inbox;
+    }
+
+    public void setInbox(ArrayList<String> inbox) {
+        this.inbox = inbox;
+    }
+
+    /*
     public User getUser() {
         return user;
     }
@@ -114,4 +124,18 @@ public class Sitter {
     public void setUser(User user) {
         this.user = user;
     }*/
+
+    @Override
+    public String toString() {
+        return "Sitter{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", zipCodes=" + zipCodes +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", ratings=" + ratings +
+                ", yearsOfExperience=" + yearsOfExperience +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package jsl28.exam.project.controller;
 
 import jsl28.exam.project.model.Sitter;
+import jsl28.exam.project.model.SitterMessage;
 import jsl28.exam.project.repository.SitterRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,5 +36,18 @@ public class ContactController {
         Sitter sitter = sitterRepository.findByName(sitterName);
         modelMap.put("sitter", sitter);
         return "contactSitter";
+    }
+
+    @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+    public String sendMessage(@ModelAttribute SitterMessage sitterMessage) {
+        if (sitterRepository.findById(sitterMessage.getSitter().getId()).orElse(null) != null) {
+            System.out.println("inSendMessage - message: " + sitterMessage.getMessage());
+            System.out.println("inSendMessage - sitter: " + sitterMessage.getSitter().toString());
+            sitterRepository.findById(sitterMessage.getSitter().getId()).
+                    orElse(null).getInbox().add(sitterMessage.getMessage());
+            return "contactSitter";
+        }
+        System.out.println("Invalid sitter: " + sitterMessage.getSitter().toString());
+        return "error";
     }
 }

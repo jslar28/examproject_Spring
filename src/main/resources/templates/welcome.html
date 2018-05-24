@@ -12,9 +12,15 @@
 <div>
     <p>Welcome, <span th:text="${session.username}"></span>!</p>
     <p>Sitter</p>
-    <p th:text="${session.sitterId}"></p>
-    <p th:text="${session.sitterName}"></p>
-    <p th:text="${session.sitterZipCodes}"></p>
+    <p th:text="${session.sitter.getId()}"></p>
+    <p th:text="${session.sitter.getName()}"></p>
+    <p th:text="${session.sitter.getEmail()}"></p>
+    <br>
+    <p>Inbox:</p>
+    <div th:each="message : ${session.sitter.getInbox()}">
+        <p th:text="${message}"></p>
+        <p>---</p>
+    </div>
 </div>
 
 <p style="color: white">Made by Jakob Støttrup Larsen</p>

@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Tue May 22 22:06:14 CEST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0163-8975-93bb-0000058e15b0 
-on database directory memory:C:\Users\Jakob\Desktop\examproject_Spring\testdb with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Thu May 24 14:40:02 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0163-9229-c874-00000693f800 
+on database directory memory:C:\Users\Jakob\Desktop\springExam\examproject_Spring\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b764bce 
 Loaded from file:/C:/Users/Jakob/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_111-b14
-user.dir=C:\Users\Jakob\Desktop\examproject_Spring
+java.runtime.version=9.0.1+11
+user.dir=C:\Users\Jakob\Desktop\springExam\examproject_Spring
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1

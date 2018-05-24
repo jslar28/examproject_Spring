@@ -20,7 +20,6 @@ public class SitterUser {
     private String password;
     @OneToOne
     private Sitter sitter;
-    private ArrayList<String> inbox = new ArrayList<>();
 
     public SitterUser(String username, String password, Sitter sitter) {
         this.username = username;
@@ -62,5 +61,15 @@ public class SitterUser {
 
     public void setSitter(Sitter sitter) {
         this.sitter = sitter;
+    }
+
+    @Override
+    public String toString() {
+        return "SitterUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sitter=" + sitter +
+                '}';
     }
 }

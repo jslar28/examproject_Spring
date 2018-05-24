@@ -3,6 +3,7 @@ package jsl28.exam.project.controller;
 import jsl28.exam.project.model.Sitter;
 import jsl28.exam.project.model.SitterUser;
 import jsl28.exam.project.repository.SitterRepository;
+import jsl28.exam.project.repository.SitterUserRepository;
 import jsl28.exam.project.service.SitterService;
 import jsl28.exam.project.service.SitterUserService;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,16 @@ public class LoginController {
     private SitterUserService sitterUserService;
     private SitterService sitterService;
     private SitterRepository sitterRepository;
+    private SitterUserRepository sitterUserRepository;
 
     public LoginController(SitterUserService sitterUserService,
                            SitterService sitterService,
-                           SitterRepository sitterRepository) {
+                           SitterRepository sitterRepository,
+                           SitterUserRepository sitterUserRepository) {
         this.sitterUserService = sitterUserService;
         this.sitterService = sitterService;
         this.sitterRepository = sitterRepository;
+        this.sitterUserRepository = sitterUserRepository;
     }
 
 
@@ -48,12 +52,9 @@ public class LoginController {
         if (sitterUserService.findSitterUserByUsernameAndPassword(
                 sitterUser.getUsername(),
                 sitterUser.getPassword()) != null) {
+            sitterUser = sitterUserRepository.findByUsername(sitterUser.getUsername());
             session.setAttribute("username", sitterUser.getUsername());
-            sitterUser.setSitter(sitterRepository.findById(1).orElse(null));
-            System.out.println("inLoginController: " + sitterUser.getSitter().getId());
-            session.setAttribute("sitterId", sitterUser.getSitter().getId());
-            session.setAttribute("sitterName", sitterUser.getSitter().getName());
-            session.setAttribute("sitterZipCodes", sitterUser.getSitter().getZipCodes());
+            session.setAttribute("sitter", sitterUser.getSitter());
             return "welcome";
         }
         model.addAttribute("error", "Wrong login.");

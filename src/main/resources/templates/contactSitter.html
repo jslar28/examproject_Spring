@@ -18,8 +18,13 @@
     <p th:text="${sitter.getYearsOfExperience()}"></p>
 </div>
 
+<form method="post" action="/sendMessage" th:object="${sitterMessage}">
+    <input type="hidden" name="sitter" id="sitter" th:value="${sitterMessage.sitter}"/>
+    <input placeholder="Chat..." style="width: 25em; height: 25em" type="text"
+           name="message" id="message" th:value="${sitterMessage.message}"/>
+    <button type="submit">Send</button>
+</form>
 
-<input placeholder="Chat..." style="width: 25em; height: 25em" type="text"/>
 
 
 </body>
