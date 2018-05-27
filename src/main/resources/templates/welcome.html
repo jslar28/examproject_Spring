@@ -2,27 +2,52 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" type="text/css" href="/static/main.css">
+<link rel="stylesheet" type="text/css" href="/main.css">
 <head>
-    <link rel="stylesheet" type="text/css" href="examproject_data/src/main/resources/static/main.css"/>
+    <link rel="stylesheet" type="text/css" href="src/main/resources/static/main.css"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body class="backdrop">
-<div>
-    <p>Welcome, <span th:text="${session.username}"></span>!</p>
-    <p>Sitter</p>
-    <p th:text="${session.sitter.getId()}"></p>
-    <p th:text="${session.sitter.getName()}"></p>
-    <p th:text="${session.sitter.getEmail()}"></p>
-    <br>
-    <p>Inbox:</p>
-    <div th:each="message : ${session.sitter.getInbox()}">
-        <p th:text="${message}"></p>
-        <p>---</p>
+<body class="backdropClean">
+<div style="width: 100%; height: 100%">
+    <ul class="navigationBar">
+        <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+        <li class="navigationLink"><a th:href="@{'/'}">Edit Profile</a></li>
+        <li class="navigationLink"><a th:href="@{'/'}">Logout</a></li>
+    </ul>
+
+    <h2 class="welcomeMessage">Welcome, <span th:text="${session.loggedInUser.getUsername()}"></span>!</h2>
+    <div class="profileContainer">
+        <div class="profileInfoBox">
+            <h4>Your Sitter Information:</h4>
+            <p th:text="'Name: ' + ${session.sitter.getName()}"></p>
+            <p th:text="'Age: ' + ${session.sitter.getAge()}"></p>
+            <p th:text="'Email: ' + ${session.sitter.getEmail()}"></p>
+            <p th:text="'Phone: ' + ${session.sitter.getTelephone()}"></p>
+            <p th:text="'Zip Codes: ' + ${session.sitter.getZipCodes()}"></p>
+            <p th:text="'Years of experience: ' + ${session.sitter.getYearsOfExperience()}"></p>
+        </div>
+
+        <div class="inbox">
+            <h4 style="padding-left: 1em">Inbox:</h4>
+            <div th:each="message : ${session.loggedInUser.getSitter().getInbox()}">
+                <div class="message">
+                    <p th:text="'From: ' + ${message.getSenderName()}">From: asdasda</p>
+                   <!-- <p th:text="'Received at: ' + ${message.getDate()}">Unknown</p>-->
+                    <p>---</p>
+                    <p th:text="${message.getText()}"></p>
+                    <p>---</p>
+                    <p>Contact information: </p>
+                    <p th:text="'Email: ' + ${message.getSenderEmail()}">None specified</p>
+                    <p th:text="'Phone: ' + ${message.getSenderPhone()}">None specified</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<p style="color: white">Made by Jakob Støttrup Larsen</p>
 </body>
+<footer>
+    <p style="color: white">Made by Jakob Støttrup Larsen</p>
+</footer>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -27,17 +28,16 @@ public class RootController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getFrontPage() {
+    public String getFrontPage(HttpSession session) {
         sitterService.createDummySitters();
         sitterUserService.createDummyUsers();
+        System.out.println("Root session attr: " + session.getAttribute("loggedInUser"));
         return "frontpage";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String getSitterByZipCode(@RequestParam String zipCode, Model model) {
-        System.out.println("Here");
         List<Sitter> sitters = sitterService.getAllSittersByZipCode(Integer.parseInt(zipCode));
-        System.out.println("Sitters: " + sitters);
         model.addAttribute("sitters", sitters);
         return "sitters";
     }

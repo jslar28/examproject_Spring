@@ -25,22 +25,12 @@ public class SitterUserService {
     }
 
     public void createDummyUsers() {
-        sitterUserRepository.save(new SitterUser("jsl", "123", sitterService.getSitter(1)));
-        System.out.println("inDummy: " + sitterService.getSitter(1));
-        sitterUserRepository.save(new SitterUser("kw", "123", sitterService.getSitter(2)));
-    }
-
-    public SitterUser filterUsers(String username, String password) {
-        ArrayList<SitterUser> sitterUsers = new ArrayList<>();
-        sitterUserRepository.findAll().forEach(sitterUsers::add);
-
-        ArrayList<SitterUser> usernameSitterUsers = new ArrayList<>();
-        sitterUsers.stream().filter(user -> user.getUsername().equals(username)).forEach(usernameSitterUsers::add);
-
-        ArrayList<SitterUser> finalSitterUsers = new ArrayList<>();
-        sitterUsers.stream().filter(user -> user.getPassword().equals(password)).forEach(finalSitterUsers::add);
-
-        return finalSitterUsers.get(0);
+        if (sitterUserRepository.findByUsername("jsl") == null && sitterUserRepository.findByUsername("kw") == null) {
+            sitterUserRepository.save(new SitterUser("jsl", "123", sitterService.getSitter(1)));
+            sitterUserRepository.save(new SitterUser("kw", "123", sitterService.getSitter(2)));
+        } else {
+            System.out.println("Already created dummy sitter users.");
+        }
     }
 
     public SitterUser findSitterUserByUsernameAndPassword(String username, String password) {
@@ -48,6 +38,14 @@ public class SitterUserService {
     }
 
     public void addSitterUser(SitterUser sitterUser) {
+        sitterUserRepository.save(sitterUser);
+    }
+
+    public SitterUser findById(int id) {
+        return sitterUserRepository.findById(id);
+    }
+
+    public void updateSitterUser(SitterUser sitterUser) {
         sitterUserRepository.save(sitterUser);
     }
 

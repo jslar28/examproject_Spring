@@ -2,25 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" type="text/css" href="/static/main.css">
+<link rel="stylesheet" type="text/css" href="/main.css">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<h1>Hello! Please register.</h1>
-<form method="post" action="/register" th:object="${sitterUser}">
-    <span th:text="${error}"></span>
-    <input type="text" placeholder="Username" name="username">
-    <input type="text" placeholder="Password" name="password">
-    <p>General information:</p><!--
-    <input type="text" placeholder="Name" name="name">
-    <input type="text" placeholder="Age" name="age">
-    <input type="text" placeholder="ZipCode" name="zipCode">
-    <input type="text" placeholder="Email" name="email">
-    <input type="text" placeholder="Telephone" name="telephone">
-    <input type="text" placeholder="Years of experience" name="yearsOfExperience">-->
-    <button type="submit">Submit Sitter</button>
-</form>
+<body class="backdrop">
+
+<ul class="navigationBar">
+    <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+</ul>
+
+<div class="middleBox">
+    <h4>Thank you for wanting to join the community! Please register below.</h4>
+    <form method="post" action="/register" th:object="${sitterUser}">
+        <p>This is the information you will use to login to the site.</p>
+        <div class="centerSection">
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Password" name="password">
+        </div>
+        <p style="color: red; width: 100%; text-align: center"  th:text="${error}"></p>
+        <div class="centerSection" style="padding-bottom: 2em">
+            <button type="submit">Submit Sitter</button>
+        </div>
+        <p>Click submit to continue to become a member!</p>
+    </form>
+</div>
+
 </body>
 </html>

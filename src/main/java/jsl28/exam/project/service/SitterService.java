@@ -4,6 +4,7 @@ import jsl28.exam.project.model.Sitter;
 import jsl28.exam.project.repository.SitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,17 @@ public class SitterService {
     }
 
     public Sitter getSitter(int id) {
-        System.out.println("int: " + id + " | string: " + Integer.toString(id));
-        System.out.println("inSitterService: " + sitterRepository.findById(id).orElse(null));
-        return sitterRepository.findById((id)).orElse(null);
+        Sitter sitter = sitterRepository.findById(id).orElse(null);
+        if (sitter != null) {
+            System.out.println("Get sitter: " + sitter.toString());
+        } else {
+            System.out.println("Could not get sitter.");
+        }
+        return sitter;
+    }
+
+    public Sitter getSitterByUsername(String username) {
+        return sitterRepository.findByName(username);
     }
 
     public void addSitter(Sitter sitter) {
@@ -47,15 +56,21 @@ public class SitterService {
         ArrayList<Integer> zipCodes = new ArrayList<>();
         zipCodes.add(2860);
         zipCodes.add(2000);
-        sitterRepository.save(new Sitter("Joe", 25, zipCodes, "test1@email.com", "61307580", 2));
-        sitterRepository.save(new Sitter("Jon", 35, zipCodes, "test2@email.com", "60307580", 4));
-        sitterRepository.save(new Sitter("Jay", 45, zipCodes, "test3@email.com", "50307580", 6));
+        if (sitterRepository.findByName("Joe") == null &&
+                sitterRepository.findByName("Jon") == null &&
+                sitterRepository.findByName("Jay") == null) {
+            sitterRepository.save(new Sitter("Joe", 25, zipCodes, "test1@email.com", "61307580", 2));
+            sitterRepository.save(new Sitter("Jon", 35, zipCodes, "test2@email.com", "60307580", 4));
+            sitterRepository.save(new Sitter("Jay", 45, zipCodes, "test3@email.com", "50307580", 6));
+        } else {
+            System.out.println("Already created dummy sitters.");
+        }
     }
 
     public List<Sitter> getAllSittersByZipCode(int zipCode) {
         List<Sitter> sitters = getAllSitters().stream().filter(sitter ->
                 sitter.getZipCodes().contains(zipCode)).collect(Collectors.toList());
-        System.out.println("FB ZIPCODES: " + sitters);
+        System.out.println("Sitters with zipCode " + zipCode + ": " + sitters);
         return sitters;
     }
 }

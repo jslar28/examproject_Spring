@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="main.css">
 <head>
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
@@ -7,7 +8,16 @@
     <title>Title</title>
 </head>
 <body class="backdrop">
-    <div class="middleBox">
+
+    <ul class="navigationBar">
+        <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+        <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/logout' : '/login')"
+                th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Logout' : 'Login'">Login/Logout</a></li>
+        <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/welcome' : '/register')"
+                th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
+    </ul>
+
+    <div style="height: 100%">
 
         <div class="searchBar">
             <p class="bannerMessage">Find the best sitters in your area!</p>

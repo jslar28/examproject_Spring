@@ -14,11 +14,18 @@ body, html {
 /*  GENERAL   */
 
 .spacer {
-    height: 15em;
+    height: 4em;
 }
 
 .backdrop {
-    background: url("/images/findASitterBackgroundClean.jpg") no-repeat center #979D9D;
+    background: url(/images/findASitterBackground.jpg) no-repeat center #979D9D;
+    /* Image source: zelsdiary.com */
+    background-size: contain;
+    height: 100%;
+}
+
+.backdropClean {
+    background: url(/images/findASitterBackgroundClean.jpg) no-repeat center #979D9D;
     /* Image source: zelsdiary.com */
     background-size: contain;
     height: 100%;
@@ -48,8 +55,24 @@ body, html {
     color: white;
 }
 
+.welcomeMessage {
+    text-align: center;
+    padding: 1em 1em 1em 1em;
+    color: white;
+}
+
 .middleBox {
-    height: 100%;
+    height: auto;
+    width: 35em;
+    margin: 5em auto 1em;
+    padding: 5em 3em 3em 3em;
+    background-color: #7adeda;
+}
+
+.centerSection {
+    width: 100%;
+    padding: 1em 0em 0em 1em;
+    text-align: center;
 }
 
 /* ---------- */
@@ -63,12 +86,11 @@ body, html {
 
 .sitterInfoBox {
     width: 25em;
-    padding-left: 3em;
-    padding-bottom: 1em;
-    padding-top: 1em;
+    padding: 1em 3em 1em 3em;
     margin: 1em auto 1em;
     background-color: #7adeda;
 }
+
 
 .sitterColumn {
     background-color: rgba(138, 43, 226, 0);
@@ -84,9 +106,59 @@ body, html {
 
 }
 
+.message {
+    width: 20em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin: 1em auto 1em;
+    background-color: #a9fffc;
+}
+
+.inbox {
+    width: 25em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin: 1em auto 1em;
+    background-color: #7ADEDA;
+}
+
+.profileInfoBox {
+    width: 25em;
+    padding: 1em 3em 1em 3em;
+    margin: 1em auto 1em;
+    float: left;
+    background-color: #7adeda;
+}
+
+.profileContainer {
+    width: 100%;
+    margin: 0em 4em 0em 4em;
+}
+
+.navigationBar {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navigationLink {
+    float: left;
+}
+
+.navigationLink a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navigationLink a:hover {
+    background-color: #111;
+}
+
 /* ---------- */
-
-
-
-
 

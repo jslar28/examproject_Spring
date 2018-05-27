@@ -10,4 +10,5 @@ public interface SitterUserRepository extends CrudRepository<SitterUser, Integer
     SitterUser findByUsername(String username);
     SitterUser findFirstByPassword(String username);
     SitterUser findFirstByUsernameAndPassword(String username, String password);
+    SitterUser findById(int id);
 }

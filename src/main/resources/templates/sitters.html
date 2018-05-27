@@ -7,9 +7,13 @@
         <meta charset="UTF-8">
         <title>Sitters</title>
     </head>
-    <body class="backdrop">
-        <div class="spacer"></div>
+    <body class="backdropClean">
+        <ul class="navigationBar">
+            <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+        </ul>
 
+        <div class="spacer"></div>
+        <h4 style="width: 100%; text-align: center">Sitters in your area:</h4>
         <div class="sitterSplitFrame">
             <div class="sitterColumn" th:each="sitter : ${sitters}">
                 <div class="sitterInfoBox">
@@ -23,7 +27,7 @@
                         <button th:href="">Contact</button>
                     </form>-->
                     <p></p>
-                    <a th:href="@{'/contact/' + ${sitter.getName()}}">Contact</a>
+                    <a th:href="@{'/contact/' + ${sitter.getId()}}">Contact</a>
                 </div>
             </div>
         </div>

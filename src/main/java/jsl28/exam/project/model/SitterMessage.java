@@ -4,8 +4,9 @@ public class SitterMessage {
     private Sitter sitter;
     private String message;
 
-    public SitterMessage(Sitter sitter) {
+    public SitterMessage(Sitter sitter, String message) {
         this.sitter = sitter;
+        this.message = message;
     }
 
     public SitterMessage() {

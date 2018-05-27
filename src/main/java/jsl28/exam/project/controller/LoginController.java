@@ -40,6 +40,14 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute("sitterUser");
+        session.removeAttribute("sitter");
+        session.removeAttribute("loggedInUser");
+        return "frontpage";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
         return "register";
@@ -52,9 +60,11 @@ public class LoginController {
         if (sitterUserService.findSitterUserByUsernameAndPassword(
                 sitterUser.getUsername(),
                 sitterUser.getPassword()) != null) {
-            sitterUser = sitterUserRepository.findByUsername(sitterUser.getUsername());
-            session.setAttribute("username", sitterUser.getUsername());
-            session.setAttribute("sitter", sitterUser.getSitter());
+            Sitter sitter = sitterUserService.findSitterUserByUsernameAndPassword(sitterUser.getUsername(), sitterUser.getPassword()).getSitter();
+            System.out.println("Sitter: " + sitter.toString());
+            session.setAttribute("loggedInUser", sitterUserService.findByUsername(sitterUser.getUsername()));
+            session.setAttribute("sitterUser", sitterUser.getUsername());
+            session.setAttribute("sitter", sitter);
             return "welcome";
         }
         model.addAttribute("error", "Wrong login.");
@@ -63,14 +73,20 @@ public class LoginController {
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String registerSitterUser(@ModelAttribute("sitterUser") SitterUser sitterUser,
-                                 HttpSession session,
-                                 Model model) {
+                                 HttpSession session, Model model) {
+        // Check if fields are filled out.
         if (!sitterUser.getUsername().equals("") && !sitterUser.getPassword().equals("")) {
-            session.setAttribute("sitterUser", sitterUser.getUsername());
-            sitterUserService.addSitterUser(sitterUser);
-            return "registerSitter";
+            // Check if username is valid.
+            if (sitterUserRepository.findByUsername(sitterUser.getUsername()) == null) {
+                session.setAttribute("sitterUser", sitterUser);
+                sitterUserService.addSitterUser(sitterUser);
+                return "registerSitter";
+            } else {
+                model.addAttribute("error", "Username already in use.");
+            }
+        } else {
+            model.addAttribute("error", "Fill all fields.");
         }
-        model.addAttribute("error", "Fill all fields.");
         return "register";
     }
 
@@ -79,11 +95,23 @@ public class LoginController {
                                  HttpSession session,
                                  Model model) {
         if (!sitter.getName().equals("") && !sitter.getEmail().equals("")) {
-            sitterUserService.findByUsername(session.getAttribute("sitterUser").toString()).setSitter(sitter);
+
+            SitterUser sitterUser = (SitterUser)session.getAttribute("sitterUser");
             sitterService.addSitter(sitter);
-            return "frontpage";
+            SitterUser updatedSitterUser = sitterUserService.findByUsername(sitterUser.getUsername());
+            updatedSitterUser.setSitter(sitterRepository.findById(sitter.getId()).orElse(null));
+            sitterUserService.updateSitterUser(updatedSitterUser);
+            session.setAttribute("sitter", sitterRepository.findByName(sitter.getName()));
+            session.setAttribute("sitterUser", sitterUserService.findByUsername(updatedSitterUser.getUsername()));
+
+            return "/login";
         }
         model.addAttribute("error", "Fill all fields.");
         return "registerSitter";
+    }
+
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public String welcomeUser() {
+        return "welcome";
     }
 }

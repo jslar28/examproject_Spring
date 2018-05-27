@@ -22,7 +22,7 @@ public class Sitter {
     private String telephone;
     private ArrayList<Integer> ratings = new ArrayList<>();
     private int yearsOfExperience;
-    private ArrayList<String> inbox = new ArrayList<>();
+    private ArrayList<Message> inbox = new ArrayList<>();
     //private User user;
 
     public Sitter(String name, int age) {
@@ -108,11 +108,11 @@ public class Sitter {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public ArrayList<String> getInbox() {
+    public ArrayList<Message> getInbox() {
         return inbox;
     }
 
-    public void setInbox(ArrayList<String> inbox) {
+    public void setInbox(ArrayList<Message> inbox) {
         this.inbox = inbox;
     }
 

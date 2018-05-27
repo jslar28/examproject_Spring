@@ -9,7 +9,7 @@
 </head>
 <body class="backdrop" style="text-align: center">
 <h1>WIP</h1>
-<div class="sitterInfoBox">
+<div class="sitterInfoBox" th:if="${sitter} != null">
     <p th:text="${sitter.getName()}"></p>
     <p th:text="${sitter.getAge()}"></p>
     <p th:text="${sitter.getEmail()}"></p>
@@ -18,10 +18,24 @@
     <p th:text="${sitter.getYearsOfExperience()}"></p>
 </div>
 
-<form method="post" action="/sendMessage" th:object="${sitterMessage}">
-    <input type="hidden" name="sitter" id="sitter" th:value="${sitterMessage.sitter}"/>
+
+<!--
+<form method="post" action="'/contact/' + ${sitter.getName()} + '/sendMessage'" th:object="${message}">
     <input placeholder="Chat..." style="width: 25em; height: 25em" type="text"
-           name="message" id="message" th:value="${sitterMessage.message}"/>
+           name="text" id="text" th:field="*{text}"/>
+    <button type="submit">Send</button>
+</form>
+-->
+
+<form method="post" action="/contact/send" th:object="${message}">
+    <p>Please leave information so the sitter can contact you:</p>
+    <div>
+        <input placeholder="Your name" type="text" name="senderName">
+        <input placeholder="Your email" type="text" name="senderEmail">
+        <input placeholder="Your phone number" type="text" name="senderPhone">
+        <!--<input type="hidden" name="date" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">-->
+    </div>
+    <input placeholder="Chat..." type="text"  name="text" />
     <button type="submit">Send</button>
 </form>
 
