@@ -2,9 +2,9 @@ package jsl28.exam.project.controller;
 
 import jsl28.exam.project.model.Message;
 import jsl28.exam.project.model.Sitter;
-import jsl28.exam.project.model.SitterMessage;
 import jsl28.exam.project.model.SitterUser;
 import jsl28.exam.project.repository.SitterRepository;
+import jsl28.exam.project.service.SitterService;
 import jsl28.exam.project.service.SitterUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +24,13 @@ import javax.servlet.http.HttpSession;
 public class ContactController {
 
     private SitterRepository sitterRepository;
+    private SitterService sitterService;
     private SitterUserService sitterUserService;
 
-    public ContactController(SitterRepository sitterRepository, SitterUserService sitterUserService) {
+    public ContactController(SitterRepository sitterRepository, SitterUserService sitterUserService, SitterService sitterService) {
         this.sitterRepository = sitterRepository;
         this.sitterUserService = sitterUserService;
+        this.sitterService = sitterService;
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
@@ -49,9 +51,17 @@ public class ContactController {
 
         Sitter recipient = sitterRepository.findById(((Sitter) session.getAttribute("sitterToContact")).getId()).orElse(null);
         if (recipient != null) {
-            System.out.println("Recipient not null!");
-            recipient.getInbox().add(message);
-            sitterRepository.save(recipient);
+            recipient.addToInbox(message);
+            System.out.println("Recipient : " + recipient.toString());
+            try {
+                sitterService.updateSitter(recipient);
+            } catch (org.springframework.dao.DataIntegrityViolationException err) {
+                err.printStackTrace();
+                model.addAttribute("sitter", recipient);
+                model.addAttribute("messageStatus", "Message was unable to be sent.");
+                model.addAttribute("message", message);
+                return "contactSitter";
+            }
 
             // Refresh session attribute - better way of doing this?
             if (session.getAttribute("loggedInUser") != null) {
@@ -60,13 +70,13 @@ public class ContactController {
             }
 
             System.out.println("inSendMessage: inbox: " + sitterRepository.findById(((Sitter) session.getAttribute("sitterToContact")).getId()).orElse(null).getInbox());
+            model.addAttribute("sitter", recipient);
+            model.addAttribute("messageStatus", "Message was sent to " + recipient.getName());
+            model.addAttribute("message", message);
+            return "contactSitter";
         } else {
             System.out.println("Tried to add message to sitter that does not exist...");
         }
-
-        model.addAttribute("message", message);
-        System.out.println("inSendMessage - message object: " + message.toString());
-
-        return "redirect:/";
+        return "contactSitter";
     }
 }

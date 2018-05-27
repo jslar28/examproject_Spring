@@ -12,8 +12,8 @@
 <div style="width: 100%; height: 100%">
     <ul class="navigationBar">
         <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
-        <li class="navigationLink"><a th:href="@{'/'}">Edit Profile</a></li>
-        <li class="navigationLink"><a th:href="@{'/'}">Logout</a></li>
+        <li class="navigationLink"><a th:href="@{'/welcome'}">Edit Profile</a></li>
+        <li class="navigationLink"><a th:href="@{'/logout'}">Logout</a></li>
     </ul>
 
     <h2 class="welcomeMessage">Welcome, <span th:text="${session.loggedInUser.getUsername()}"></span>!</h2>

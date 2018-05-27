@@ -3,6 +3,7 @@ package jsl28.exam.project.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,10 @@ public class Sitter {
 
     @Id @GeneratedValue
     private int id;
+
+    @Version
+    private Long version;
+
     private String name;
     private int age;
 
@@ -23,21 +28,19 @@ public class Sitter {
     private ArrayList<Integer> ratings = new ArrayList<>();
     private int yearsOfExperience;
     private ArrayList<Message> inbox = new ArrayList<>();
-    //private User user;
 
     public Sitter(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public Sitter(String name, int age, ArrayList<Integer> zipCodes, String email, String telephone, int yearsOfExperience /*, User user)*/) {
+    public Sitter(String name, int age, ArrayList<Integer> zipCodes, String email, String telephone, int yearsOfExperience) {
         this.name = name;
         this.age = age;
         this.zipCodes = zipCodes;
         this.email = email;
         this.telephone = telephone;
         this.yearsOfExperience = yearsOfExperience;
-        //this.user = user;
     }
 
     public Sitter() {
@@ -116,14 +119,17 @@ public class Sitter {
         this.inbox = inbox;
     }
 
-    /*
-    public User getUser() {
-        return user;
+    public void addToInbox(Message message) {
+        this.inbox.add(message);
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }*/
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 
     @Override
     public String toString() {
@@ -134,6 +140,7 @@ public class Sitter {
                 ", zipCodes=" + zipCodes +
                 ", email='" + email + '\'' +
                 ", telephone='" + telephone + '\'' +
+                ", inbox='" + inbox + '\'' +
                 ", ratings=" + ratings +
                 ", yearsOfExperience=" + yearsOfExperience +
                 '}';

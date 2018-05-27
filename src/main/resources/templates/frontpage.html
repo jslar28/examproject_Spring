@@ -13,8 +13,10 @@
         <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
         <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/logout' : '/login')"
                 th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Logout' : 'Login'">Login/Logout</a></li>
-        <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/welcome' : '/register')"
+        <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/editProfile/' + ${session.loggedInUser.getId()} : '/register')"
                 th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
+        <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/viewProfile/' : '/')"
+                                      th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'View Profile' : ''">Edit/Register</a></li>
     </ul>
 
     <div style="height: 100%">

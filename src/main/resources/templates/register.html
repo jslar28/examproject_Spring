@@ -11,6 +11,10 @@
 
 <ul class="navigationBar">
     <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+    <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/logout' : '/login')"
+                                  th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Logout' : 'Login'">Login/Logout</a></li>
+    <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/welcome' : '/register')"
+                                  th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
 </ul>
 
 <div class="middleBox">

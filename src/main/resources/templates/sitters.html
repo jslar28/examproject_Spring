@@ -10,6 +10,10 @@
     <body class="backdropClean">
         <ul class="navigationBar">
             <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+            <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/logout' : '/login')"
+                                          th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Logout' : 'Login'">Login/Logout</a></li>
+            <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/welcome' : '/register')"
+                                          th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
         </ul>
 
         <div class="spacer"></div>
@@ -23,9 +27,6 @@
                     <p th:text="'Email: ' + ${sitter.getEmail()}">EMAIL</p>
                     <p th:text="'Phone: ' + ${sitter.getTelephone()}">TLF</p>
                     <p th:text="'Zip Code(s): ' + ${sitter.getZipCodes()}">ZIPCODES</p>
-                    <!--<form method="post" action="/contact">
-                        <button th:href="">Contact</button>
-                    </form>-->
                     <p></p>
                     <a th:href="@{'/contact/' + ${sitter.getId()}}">Contact</a>
                 </div>

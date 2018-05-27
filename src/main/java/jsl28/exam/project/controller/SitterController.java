@@ -2,6 +2,7 @@ package jsl28.exam.project.controller;
 
 import jsl28.exam.project.service.SitterService;
 import jsl28.exam.project.model.Sitter;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

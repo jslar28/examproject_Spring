@@ -17,13 +17,14 @@
                                   th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
 </ul>
 
-<form method="post" action="/registerSitter">
+<form method="post" th:action="'/editProfile/' + ${session.loggedInUser.getId()}">
     <div class="middleBox">
-        <h4 style="width: 100%; text-align: center">Please fill out the form</h4>
+        <h4 style="width: 100%; text-align: center">Please edit the form</h4>
         <div class="centerSection">
-            <span th:text="${error}" th:object="${sitter}"></span>
+            <span th:text="${error}" th:object="${sitterToEdit}"></span>
             <h5>General information:</h5>
-            <span>Name: <input style="width: 100%" type="text" placeholder="Name" name="name"></span>
+            <input type="hidden" th:value="${sitterToEdit.getVersion()}">
+            <span>Name: <input style="width: 100%" type="text" name="name" th:value="${sitterToEdit.getName()}"></span>
             <span>Age: <input style="width: 100%" type="text" placeholder="Age" name="age"></span>
             <span>Zip Codes: <input style="width: 100%" type="text" placeholder="ZipCode" name="zipCodes"></span>
             <span>Email: <input style="width: 100%" type="text" placeholder="Email" name="email"></span>
@@ -31,8 +32,9 @@
             <span>Years of experience: <input style="width: 100%" type="text" placeholder="Years of experience" name="yearsOfExperience"></span>
         </div>
         <div class="centerSection">
-            <button type="submit">Become a sitter!</button>
+            <button type="submit">Save changes</button>
         </div>
+        <p th:text="${status}"></p>
     </div>
 </form>
 </body>

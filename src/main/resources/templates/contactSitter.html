@@ -8,7 +8,16 @@
 
 </head>
 <body class="backdrop" style="text-align: center">
-<h1>WIP</h1>
+
+<ul class="navigationBar">
+    <li class="navigationLink"><a th:href="@{'/'}">Front Page</a></li>
+    <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/logout' : '/login')"
+                                  th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Logout' : 'Login'">Login/Logout</a></li>
+    <li class="navigationLink"><a th:with="baseUrl=(${session.loggedInUser}? '/welcome' : '/register')"
+                                  th:href="@{${baseUrl}}" th:text="${session.loggedInUser} ? 'Edit Profile' : 'Register Profile'">Edit/Register</a></li>
+</ul>
+
+<h2 th:text="'Send a message to ' + ${sitter.getName()} + '!'"></h2>
 <div class="sitterInfoBox" th:if="${sitter} != null">
     <p th:text="${sitter.getName()}"></p>
     <p th:text="${sitter.getAge()}"></p>
@@ -18,15 +27,6 @@
     <p th:text="${sitter.getYearsOfExperience()}"></p>
 </div>
 
-
-<!--
-<form method="post" action="'/contact/' + ${sitter.getName()} + '/sendMessage'" th:object="${message}">
-    <input placeholder="Chat..." style="width: 25em; height: 25em" type="text"
-           name="text" id="text" th:field="*{text}"/>
-    <button type="submit">Send</button>
-</form>
--->
-
 <form method="post" action="/contact/send" th:object="${message}">
     <p>Please leave information so the sitter can contact you:</p>
     <div>
@@ -35,11 +35,12 @@
         <input placeholder="Your phone number" type="text" name="senderPhone">
         <!--<input type="hidden" name="date" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">-->
     </div>
-    <input placeholder="Chat..." type="text"  name="text" />
+    <input placeholder="Insert message..." type="text"  name="text" />
     <button type="submit">Send</button>
 </form>
 
-
+<p th:text="${messageStatus}"></p>
+<a th:href="@{'/'}">Return to Home Page</a>
 
 </body>
 </html>
